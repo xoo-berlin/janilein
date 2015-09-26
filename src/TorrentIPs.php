@@ -10,9 +10,11 @@ namespace avs;
 
 include_once 'Globals.php';
 
-class IPs
-{
+CONST DIVISOR = ';';
+CONST NAME = 'torrent-ips';
 
+class TorrentIPs
+{
     public static function myIP(){
         return getHostByName(getHostName());
     }
@@ -27,24 +29,20 @@ class IPs
         }
     }
 
-    // 1st IP = myIp
     public static function get(){
-        $allIPs = Globals::get('ips', '');
+        $allIPs = Globals::get(NAME, '');
 
-        $ips = explode(";", $allIPs);
+        $ips = explode(DIVISOR, $allIPs);
 
-        // TODO MyIP (getHostByName(getHostName()))
-        $myIp = '192.168.0.107';
-        array_unshift($ips, $myIp);
-
-        // var_dump($ips);
+        // $myIp = self::myIP();
+        // array_unshift($ips, $myIp);
 
         return $ips;
     }
 
     public static function update($ipsString){
         // parse und append IPs
-        $ipsSplitted = explode(";", $ipsString);
+        $ipsSplitted = explode(DIVISOR, $ipsString);
         foreach ($ipsSplitted as $ipSplitted) {
             self::add($ipSplitted);
         }
@@ -54,11 +52,11 @@ class IPs
     }
 
     public static function add($ip){
-        $allIPs = Globals::get('ips', '');
+        $allIPs = Globals::get(NAME, '');
 
-        $allIPs = $allIPs . ";" . $ip;
+        $allIPs = $allIPs . DIVISOR . $ip;
 
-        Globals::put('ips', $allIPs);
+        Globals::put(NAME, $allIPs);
     }
 
 

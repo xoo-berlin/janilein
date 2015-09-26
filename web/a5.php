@@ -92,14 +92,9 @@
     </script>
 </head>
 <body>
-<p>Eingabe:</p>
-<label for="eingabeId" >ID:</label>
-<input type="text" id="eingabeId" value="eineId" />
-<label for="eingabeMsg" >Msg:</label>
-<input type="text" id="eingabeMsg" value="hallo jan" />
-<br/>
-<button id="sendFields" >senden feld</button>
-<button id="sendDefault" >senden default</button>
+<p>Aktion:</p>
+<button id="alice" >Alice</button>
+<button id="bob" >Bob</button>
 
 <button id="btnReset" >reset</button>
 
